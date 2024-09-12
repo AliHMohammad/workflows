@@ -12,5 +12,13 @@ jobs:
   comment:
     runs-on: ubuntu-latest
     steps:
-      - name: "Dump GitHub context"
-        run: echo '${{ toJson(github) }}' | jq
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{github.event.issue.number}}
+          body: |
+            Thank you for creating the issue! 🎉
+
+            Here is a guide to what to do next. Remember  to label the issue.
+            [1]: https://github.com/peter-evans/create-or-update-comment
+          reactions: '+1'
